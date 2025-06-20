@@ -33,6 +33,7 @@ def merge_sort(array):
 
 if __name__ == '__main__':
     numbers = [4, 10, 6, 14, 2, 1, 8, 5]
-    print('Unsorted array:')
+    print('Unsorted array: ')
     print(numbers)
     merge_sort(numbers)
+    print('Sorted array: ', str(numbers))
