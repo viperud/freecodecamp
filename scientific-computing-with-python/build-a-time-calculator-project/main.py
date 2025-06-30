@@ -17,21 +17,20 @@ def add_time(start, duration):
     if new_time_min >= 60:
         new_time_hr += 1
         new_time_min -= 60
+    
+    while new_time_hr > 24:
+        new_time_hr -= 24
+        extra_days += 1
 
-    while new_time_hr >= 12:
-        if new_time_hr >= 24:
-            new_time_hr -= 24
+    if new_time_hr >= 12 and new_time_hr > start_time_hr:
+        if ampm == 'PM':
+            ampm = 'AM'
             extra_days += 1
-            if new_time_hr > 24:
-                pass
-        
-        if new_time_hr >= 12 and new_time_hr > start_time_hr:
-            if ampm == 'AM':
-                ampm = 'PM'
-            else:
-                ampm = 'AM'
-                extra_days += 1
             new_time_hr -= 12
+        else:
+            if new_time_hr > 12:
+                new_time_hr -= 12
+            ampm = 'PM'
  
     new_time = f"{new_time_hr}:{new_time_min:02}"
 
@@ -43,4 +42,9 @@ def add_time(start, duration):
     print(new_time)
     return new_time
 
+add_time('3:30 PM', '2:12')
+add_time('11:55 AM', '3:12')
 add_time('2:59 AM', '24:00')
+add_time('11:59 PM', '24:05')
+add_time('8:16 PM', '466:02')
+add_time('8:16 PM', '0:00')
