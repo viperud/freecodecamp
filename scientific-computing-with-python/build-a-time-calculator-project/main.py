@@ -21,12 +21,13 @@ def add_time(start, duration):
     while new_time_hr > 24:
         new_time_hr -= 24
         extra_days += 1
-
+    
     if new_time_hr >= 12 and new_time_hr > start_time_hr:
         if ampm == 'PM':
+            if new_time_hr > 12:
+                new_time_hr -= 12
             ampm = 'AM'
             extra_days += 1
-            new_time_hr -= 12
         else:
             if new_time_hr > 12:
                 new_time_hr -= 12
