@@ -1,7 +1,7 @@
 def add_time(start, duration, day=''):
     new_time = ''
     extra_days = 0
-    days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY']
+    days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
     start_time = start.split(' ')[0]
     ampm = start.split(' ')[1]
@@ -40,7 +40,8 @@ def add_time(start, duration, day=''):
 
     if day > '':
         day = day[0].upper() + day[1:].lower()
-        new_time += ', ' + day
+        day_index = (days.index(day) + (extra_days % 7)) % 7
+        new_time += ', ' + days[day_index]
 
     if extra_days == 1:
         new_time += ' (next day)'
@@ -57,3 +58,5 @@ add_time('8:16 PM', '466:02')
 add_time('8:16 PM', '0:00')
 add_time('3:30 PM', '2:12', 'Monday')
 add_time('2:59 AM', '24:00', 'saturDay')
+add_time('11:59 PM', '24:05', 'Wednesday')
+add_time('8:16 PM', '466:02', 'tuesday')
