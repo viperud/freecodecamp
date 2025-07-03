@@ -12,4 +12,4 @@ class BinarySearchTree:
         if node is None:
             TreeNode(key)
         if key < node.key:
-            pass
+            node.left = self._insert(node.left, key)
