@@ -9,4 +9,5 @@ class BinarySearchTree:
         self.root = None
 
     def _insert(self, node, key):
-        pass
+        if node is None:
+            TreeNode(key)
