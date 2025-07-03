@@ -19,5 +19,5 @@ class BinarySearchTree:
 
         return node
     
-    def insert(self):
+    def insert(self, key):
         pass
