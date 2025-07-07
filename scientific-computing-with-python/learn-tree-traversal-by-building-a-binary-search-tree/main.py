@@ -30,3 +30,6 @@ class BinarySearchTree:
             return self._search(node.left, key)
         
         return self._search(node.right, key)
+    
+    def search(self, key):
+        pass
