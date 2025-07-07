@@ -37,6 +37,9 @@ class BinarySearchTree:
     def search(self, key):
         return self._search(self.root, key)
     
+    def _delete(self, node, key):
+        pass
+    
 bst = BinarySearchTree()
 
 nodes = [50, 30, 20, 40, 70, 60, 80]
