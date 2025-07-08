@@ -63,7 +63,8 @@ class BinarySearchTree:
         self.root = self._delete(self.root, key)
 
     def _inorder_traversal(self, node, result):
-        pass
+        if node:
+            self._inorder_traversal(node.left, result)
 
 bst = BinarySearchTree()
 
