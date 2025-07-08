@@ -42,7 +42,7 @@ class BinarySearchTree:
             return node
         
         if key < node.key:
-            pass
+            node.left = self._delete(node.left, key)
     
 bst = BinarySearchTree()
 
