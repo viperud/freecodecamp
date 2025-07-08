@@ -48,6 +48,8 @@ class BinarySearchTree:
         else:
             if node.left is None:
                 return node.right
+            elif node.right is None:
+                return node.left
     
 bst = BinarySearchTree()
 
