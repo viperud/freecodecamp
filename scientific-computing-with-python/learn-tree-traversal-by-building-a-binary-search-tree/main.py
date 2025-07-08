@@ -70,6 +70,7 @@ class BinarySearchTree:
 
     def inorder_traversal(self):
         result = []
+        self._inorder_traversal(self.root, result)
 
 bst = BinarySearchTree()
 
