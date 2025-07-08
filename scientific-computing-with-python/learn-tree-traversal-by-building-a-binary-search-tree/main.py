@@ -51,7 +51,8 @@ class BinarySearchTree:
             elif node.right is None:
                 return node.left
             node.key = self._min_value(node.right)
-            
+            node.right = self._delete(node.right, node.key)
+
     def _min_value(self, node):
         while node.left is not None:
             node = node.left
