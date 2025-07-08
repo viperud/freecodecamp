@@ -50,13 +50,14 @@ class BinarySearchTree:
                 return node.right
             elif node.right is None:
                 return node.left
+            node.key = self._min_value(node.right)
             
     def _min_value(self, node):
         while node.left is not None:
             node = node.left
         return node.key
 
-    
+
 bst = BinarySearchTree()
 
 nodes = [50, 30, 20, 40, 70, 60, 80]
