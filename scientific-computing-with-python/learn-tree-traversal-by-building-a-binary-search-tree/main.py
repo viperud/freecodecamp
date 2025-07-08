@@ -43,6 +43,8 @@ class BinarySearchTree:
         
         if key < node.key:
             node.left = self._delete(node.left, key)
+        elif key > node.key:
+            node.right = self._delete(node.right, key)
     
 bst = BinarySearchTree()
 
