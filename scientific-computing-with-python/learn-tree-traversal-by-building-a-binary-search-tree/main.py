@@ -83,3 +83,4 @@ for node in nodes:
 print('Search for 80:', bst.search(80))
 print('Inorder traversal:', bst.inorder_traversal())
 bst.delete(40)
+print('Search for 40:', bst.search(40))
