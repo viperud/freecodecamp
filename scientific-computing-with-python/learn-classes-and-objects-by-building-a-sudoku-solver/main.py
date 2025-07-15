@@ -1,4 +1,5 @@
 class Board:
-    pass
+    def spam():
+        pass
 
 gameboard = Board()
