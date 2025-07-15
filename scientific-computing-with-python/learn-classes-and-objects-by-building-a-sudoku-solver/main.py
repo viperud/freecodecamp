@@ -15,3 +15,4 @@ puzzle = [
 ]
 
 gameboard = Board(puzzle)
+print(gameboard.board)
