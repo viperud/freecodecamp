@@ -1,5 +1,5 @@
 class Board:
-    def spam(self):
+    def __init__(self):
         print('Spam!')
 
 gameboard = Board()
