@@ -28,3 +28,4 @@ puzzle = [
 ]
 
 gameboard = Board(puzzle)
+print(gameboard.valid_in_row(0, 8))
