@@ -13,7 +13,7 @@ class Board:
         return None
 
 puzzle = [
-  [1, 0, 2, 0, 0, 8, 0, 0, 0],
+  [0, 0, 2, 0, 0, 8, 0, 0, 0],
   [0, 0, 0, 0, 0, 3, 7, 6, 2],
   [4, 3, 0, 0, 0, 0, 8, 0, 0],
   [0, 5, 0, 0, 3, 0, 0, 9, 0],
@@ -25,4 +25,3 @@ puzzle = [
 ]
 
 gameboard = Board(puzzle)
-print(gameboard.find_empty_cell())
