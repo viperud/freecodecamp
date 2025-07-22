@@ -41,4 +41,3 @@ puzzle = [
 ]
 
 gameboard = Board(puzzle)
-print(gameboard.valid_in_square(1,6,3))
