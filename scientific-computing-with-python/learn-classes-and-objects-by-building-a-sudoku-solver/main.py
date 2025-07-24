@@ -39,7 +39,8 @@ class Board:
         if (next_empty := self.find_empty_cell()) is None:
             return True
         for guess in range(1, 10):
-            pass
+            if self.is_valid(next_empty, guess):
+                pass
 
 
 puzzle = [
