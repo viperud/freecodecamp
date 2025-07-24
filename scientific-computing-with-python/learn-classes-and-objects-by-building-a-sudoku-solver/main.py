@@ -41,6 +41,7 @@ class Board:
         for guess in range(1, 10):
             if self.is_valid(next_empty, guess):
                 row, col = next_empty
+                self.board[row][col] = guess
 
 
 puzzle = [
