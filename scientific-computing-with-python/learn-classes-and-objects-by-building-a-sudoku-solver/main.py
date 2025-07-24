@@ -40,7 +40,7 @@ class Board:
             return True
         for guess in range(1, 10):
             if self.is_valid(next_empty, guess):
-                pass
+                row, col = next_empty
 
 
 puzzle = [
