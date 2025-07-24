@@ -47,6 +47,8 @@ class Board:
                 self.board[row][col] = 0
         return False
 
+def solve_sudoku(board):
+    pass
 
 puzzle = [
   [0, 0, 2, 0, 0, 8, 0, 0, 0],
