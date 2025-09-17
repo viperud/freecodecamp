@@ -2,7 +2,9 @@ import budget
 from budget import Category
 
 def create_spend_chart(categories):
-    pass
+    title = 'Percentage spent by category'
+    output = ''
+    return title + output
 
 food = Category('Food')
 food.deposit(1000, 'deposit')
