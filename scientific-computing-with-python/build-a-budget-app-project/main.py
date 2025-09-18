@@ -2,28 +2,31 @@ import budget
 from budget import Category
 
 def create_spend_chart(categories):
-    total_balance = 0
-    title = 'Percentage spent by category'
-    output = ''
+    spent_amounts = []
+    # Get total spent in each category
     for category in categories:
-        total_balance += category.get_balance()
-    total_balance = total_balance 
-    per_list = []
-    for category in categories:
-        cat_per = int((category.get_balance() / total_balance) * 100)
-        round_per = cat_per - (cat_per % 10 if cat_per % 10 < 5 else -5)
-        per_list.append(round_per)
-    total_per = 100
-    while total_per >= 0:
-        output += f'\n{total_per:3}| '
-        for cat_per in per_list:
-            if cat_per >= total_per:
-                output += 'o  '
+        spent = 0
+        for item in category.ledger:
+            if item["amount"] < 0:
+                spent += abs(item["amount"])
+        spent_amounts.append(round(spent, 2))
+
+    # Calculate percentage rounded down to the nearest 10
+    total = round(sum(spent_amounts), 2)
+    spent_percentage = list(map(lambda amount: int((((amount / total) * 10) // 1) * 10), spent_amounts))
+
+    # Create the bar chart substrings
+    header = "Percentage spent by category\n"
+
+    chart = ""
+    for value in reversed(range(0, 101, 10)):
+        chart += str(value).rjust(3) + '|'
+        for percent in spent_percentage:
+            if percent >= value:
+                chart += " o "
             else:
-                output += '   '
-            cat_per -= 10
-        total_per -= 10
-    output += '\n'
+                chart += "   "
+        chart += " \n"
 
     footer = "    " + "-" * ((3 * len(categories)) + 1) + "\n"
     descriptions = list(map(lambda category: category.expence_cat, categories))
@@ -31,7 +34,8 @@ def create_spend_chart(categories):
     descriptions = list(map(lambda description: description.ljust(max_length), descriptions))
     for x in zip(*descriptions):
         footer += "    " + "".join(map(lambda s: s.center(3), x)) + " \n"
-    return (title + output + footer).rstrip("\n")
+
+    return (header + chart + footer).rstrip("\n")
 
 food = Category('Food')
 food.deposit(1000, 'deposit')
