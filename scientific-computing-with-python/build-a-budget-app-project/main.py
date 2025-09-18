@@ -25,7 +25,13 @@ def create_spend_chart(categories):
         total_per -= 10
     output += '\n'
 
-    return title + output
+    footer = "    " + "-" * ((3 * len(categories)) + 1) + "\n"
+    descriptions = list(map(lambda category: category.expence_cat, categories))
+    max_length = max(map(lambda description: len(description), descriptions))
+    descriptions = list(map(lambda description: description.ljust(max_length), descriptions))
+    for x in zip(*descriptions):
+        footer += "    " + "".join(map(lambda s: s.center(3), x)) + " \n"
+    return (title + output + footer).rstrip("\n")
 
 food = Category('Food')
 food.deposit(1000, 'deposit')
