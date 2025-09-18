@@ -2,8 +2,29 @@ import budget
 from budget import Category
 
 def create_spend_chart(categories):
+    total_balance = 0
     title = 'Percentage spent by category'
     output = ''
+    for category in categories:
+        total_balance += category.get_balance()
+    total_balance = total_balance 
+    per_list = []
+    for category in categories:
+        cat_per = int((category.get_balance() / total_balance) * 100)
+        round_per = cat_per - (cat_per % 10 if cat_per % 10 < 5 else -5)
+        per_list.append(round_per)
+    total_per = 100
+    while total_per >= 0:
+        output += f'\n{total_per:3}| '
+        for cat_per in per_list:
+            if cat_per >= total_per:
+                output += 'o  '
+            else:
+                output += '   '
+            cat_per -= 10
+        total_per -= 10
+    output += '\n'
+
     return title + output
 
 food = Category('Food')
