@@ -40,6 +40,8 @@ food.withdraw(15.89, 'restaurant and more food for dessert')
 clothing = Category('Clothing')
 food.transfer(50, clothing)
 print(food)
+obj = create_spend_chart([food, clothing])
+print(obj)
 
 #Test case 6
 #food.deposit(900, 'deposit')
