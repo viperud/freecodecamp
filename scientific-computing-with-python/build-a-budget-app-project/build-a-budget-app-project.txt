@@ -1,0 +1,105 @@
+** start of main.py **
+
+class Category:
+    
+    def __init__(self, expence_cat):
+        self.expence_cat = expence_cat
+        self.ledger = []
+        self.balance = 0
+
+    def __str__(self):
+        title = f'{self.expence_cat!s:*^30}'
+        output = ''
+        for item in self.ledger:
+            output += f"\n{item['description'][:23]:23}{item['amount']:>7.2f}"
+        total = f'\nTotal: {self.get_balance()}'
+        return title + output + total
+
+    def deposit(self, amount, description = ''):
+        dict_val = {'amount': amount, 'description': description}
+        self.ledger.append(dict_val)
+        self.balance += amount
+
+    def withdraw(self, amount, description = ''):
+        dict_val = {'amount': amount * -1, 'description': description}
+        if self.check_funds(amount):
+            self.balance += amount * -1
+            self.ledger.append(dict_val)
+            return True
+        else:
+            return False
+
+    def get_balance(self):
+        return self.balance
+
+    def transfer(self, amount, budget_category):
+        dict_val = {'amount': amount * -1, 'description': f'Transfer to {budget_category.expence_cat}'}
+        
+        if self.check_funds(amount):
+            self.balance += amount * -1
+            self.ledger.append(dict_val)
+            budget_category.deposit(amount, f'Transfer from {self.expence_cat}')
+            return True
+        else:
+            return False
+
+    def check_funds(self, amount):
+        if self.balance < amount:
+            return False
+        else:
+            return True
+
+def create_spend_chart(categories):
+    spent_amounts = []
+    # Get total spent in each category
+    for category in categories:
+        spent = 0
+        for item in category.ledger:
+            if item["amount"] < 0:
+                spent += abs(item["amount"])
+        spent_amounts.append(round(spent, 2))
+
+    # Calculate percentage rounded down to the nearest 10
+    total = round(sum(spent_amounts), 2)
+    spent_percentage = list(map(lambda amount: int((((amount / total) * 10) // 1) * 10), spent_amounts))
+
+    # Create the bar chart substrings
+    header = "Percentage spent by category\n"
+
+    chart = ""
+    for value in reversed(range(0, 101, 10)):
+        chart += str(value).rjust(3) + '|'
+        for percent in spent_percentage:
+            if percent >= value:
+                chart += " o "
+            else:
+                chart += "   "
+        chart += " \n"
+
+    footer = "    " + "-" * ((3 * len(categories)) + 1) + "\n"
+    descriptions = list(map(lambda category: category.expence_cat, categories))
+    max_length = max(map(lambda description: len(description), descriptions))
+    descriptions = list(map(lambda description: description.ljust(max_length), descriptions))
+    for x in zip(*descriptions):
+        footer += "    " + "".join(map(lambda s: s.center(3), x)) + " \n"
+
+    return (header + chart + footer).rstrip("\n")
+
+food = Category('Food')
+food.deposit(1000, 'deposit')
+food.withdraw(10.15, 'groceries')
+food.withdraw(15.89, 'restaurant and more food for dessert')
+clothing = Category('Clothing')
+food.transfer(50, clothing)
+print(food)
+print(clothing)
+obj = create_spend_chart([food, clothing])
+print(obj)
+
+#Test case 6
+#food.deposit(900, 'deposit')
+#food.withdraw(45.67, 'milk, cereal, eggs, bacon, bread')
+#print(food)
+
+** end of main.py **
+
